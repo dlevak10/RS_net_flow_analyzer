@@ -31,6 +31,11 @@ app/
       stats.py
       login.py
   db/
+  templates/
+    login.html
+  static/
+    css/
+      main.css
   models/
     netflow.py
     alert.py
@@ -46,6 +51,8 @@ app/
 
 - `app/main.py` - glavna FastAPI app i registracija ruta
 - `app/api/routes/` - API endpointi odvojeni po funkcionalnosti
+- `app/templates/` - HTML stranice
+- `app/static/` - CSS iS
 - `app/models/` - definiranje oblika podataka koje aplikacija prima i vraca (izgled netflow zapisa koji dolazi na /ingest, struktura alerta koji dolazi na /alert, info vezan za JWT tokene)
 - `app/services/` - parsiranje NetFlow zapisa, detekcija anomalija, racunanje statistike i autentifikacija
 - `app/db/` - logika za povezivanje s bazom podataka

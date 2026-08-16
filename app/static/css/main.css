@@ -1,0 +1,9 @@
+#root > main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  max-width: 510px;
+  margin: 0 auto;
+  padding: 1rem;
+}
