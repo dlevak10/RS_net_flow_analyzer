@@ -12,6 +12,10 @@
   max-width: 900px;
 }
 
+.stats-page #root > main {
+  max-width: 1000px;
+}
+
 .dashboard-page header {
   margin-bottom: 2rem;
   text-align: center;

@@ -11,11 +11,36 @@
     >
     <link rel="stylesheet" href="/static/css/main.css">
   </head>
-  <body class="simple-page">
+  <body class="stats-page">
     <div id="root">
       <main>
         <h1>Stats</h1>
-        <p>Template page....</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Router</th>
+              <th>Source IP</th>
+              <th>Destination IP</th>
+              <th>Protocol</th>
+              <th>Bytes</th>
+              <th>Packets</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for record in records %}
+            <tr>
+              <td>{{ record["router-id"] }}</td>
+              <td>{{ record["src-address"] }}</td>
+              <td>{{ record["dst-address"] }}</td>
+              <td>{{ record["protocol"] }}</td>
+              <td>{{ record["bytes"] }}</td>
+              <td>{{ record["packets"] }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
         <a href="/dashboard.html">Back to dashboard</a>
       </main>
     </div>
