@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>NetFlow Analyzer - Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.indigo.min.css"
+    >
+    <link rel="stylesheet" href="/static/css/main.css">
+  </head>
+  <body class="dashboard-page">
+    <div id="root">
+      <main>
+        <header>
+          <h1>Dashboard</h1>
+          <p>NetFlow Dashboard</p>
+        </header>
+
+        <section class="dashboard-cards" aria-label="Dashboard links">
+          <a class="dashboard-card" href="/alerts.html">
+            <h2>Alerts</h2>
+            <p>Check detected traffic alerts and anomalies.</p>
+          </a>
+
+          <a class="dashboard-card" href="/stats.html">
+            <h2>Stats</h2>
+            <p>Checks traffic statistics.</p>
+          </a>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

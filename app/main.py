@@ -21,3 +21,18 @@ app.include_router(login.router)
 @app.get("/")
 async def root():
     return FileResponse(APP_DIR / "templates" / "login.html")
+
+
+@app.get("/dashboard.html")
+async def dashboard_page():
+    return FileResponse(APP_DIR / "templates" / "dashboard.html")
+
+
+@app.get("/alerts.html")
+async def alerts_page():
+    return FileResponse(APP_DIR / "templates" / "alerts.html")
+
+
+@app.get("/stats.html")
+async def stats_page():
+    return FileResponse(APP_DIR / "templates" / "stats.html")
