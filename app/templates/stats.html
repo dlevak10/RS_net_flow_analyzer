@@ -21,10 +21,14 @@
             <tr>
               <th>Router</th>
               <th>Source IP</th>
+              <th>Source Port</th>
               <th>Destination IP</th>
+              <th>Destination Port</th>
               <th>Protocol</th>
               <th>Bytes</th>
               <th>Packets</th>
+              <th>In Interface</th>
+              <th>Out Interface</th>
             </tr>
           </thead>
           <tbody>
@@ -32,10 +36,14 @@
             <tr>
               <td>{{ record["router-id"] }}</td>
               <td>{{ record["src-address"] }}</td>
+              <td>{{ record["src-port"] }}</td>
               <td>{{ record["dst-address"] }}</td>
+              <td>{{ record["dst-port"] }}</td>
               <td>{{ record["protocol"] }}</td>
               <td>{{ record["bytes"] }}</td>
               <td>{{ record["packets"] }}</td>
+              <td>{{ record["in-interface"] }}</td>
+              <td>{{ record["out-interface"] }}</td>
             </tr>
             {% endfor %}
           </tbody>

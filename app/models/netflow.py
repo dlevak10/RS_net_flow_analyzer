@@ -76,6 +76,21 @@ def create_example_records() -> list[NetFlowZapis]:
         "in-interface": "ether2",
         "out-interface": "ether1",
         "router-id": "R2",
+    },
+    {
+        "bytes": 2500000,
+        "ip-total-length": 1500,
+        "src-address": "192.168.1.50",
+        "dst-address": "203.0.113.10",
+        "src-port": 51515,
+        "dst-port": 443,
+        "first-forwarded": current_time + timedelta(seconds=30),
+        "last-forwarded": current_time + timedelta(seconds=60),
+        "protocol": 6,
+        "packets": 2000,
+        "in-interface": "ether1",
+        "out-interface": "ether2",
+        "router-id": "R2",
     }]
 
 
