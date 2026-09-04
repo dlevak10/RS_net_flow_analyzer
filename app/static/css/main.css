@@ -13,7 +13,73 @@
 }
 
 .stats-page #root > main {
-  max-width: 1000px;
+  justify-content: flex-start;
+  max-width: 1280px;
+  padding-block: 2rem;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.page-header h1 {
+  margin: 0;
+}
+
+.stats-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.stats-summary article {
+  min-height: 104px;
+  margin: 0;
+  padding: 1rem;
+  border: 1px solid var(--pico-muted-border-color);
+  border-radius: 8px;
+  background: var(--pico-card-background-color);
+}
+
+.stats-summary span {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--pico-muted-color);
+  font-size: 0.85rem;
+}
+
+.stats-summary strong {
+  display: block;
+  overflow-wrap: anywhere;
+  font-size: 1.15rem;
+}
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.stats-page table {
+  min-width: 1120px;
+}
+
+.stats-page th,
+.stats-page td {
+  white-space: nowrap;
+}
+
+.empty-state {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid var(--pico-muted-border-color);
+  border-radius: 8px;
 }
 
 .dashboard-page header {
@@ -47,6 +113,15 @@
 
 @media (max-width: 700px) {
   .dashboard-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .page-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .stats-summary {
     grid-template-columns: 1fr;
   }
 }

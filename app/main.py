@@ -6,7 +6,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 from app.api.routes import alerts, ingest, login, stats
-from app.models.netflow import create_example_records, is_large_transfer
+from app.services.stats_calculator import calculate_flow_summary, read_flow_records
 
 app = FastAPI(title="NetFlow Analyzer")
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -33,12 +33,11 @@ async def dashboard_page():
 
 @app.get("/alerts.html")
 async def alerts_page(request: Request):
-    records = create_example_records()
-    alerts_records = []
-
-    for record in records:
-        if is_large_transfer(record):
-            alerts_records.append(record)
+    records = read_flow_records()
+    alerts_records = [
+        record for record in records
+        if int(record.get("bytes") or 0) > 1000000
+    ]
 
     return templates.TemplateResponse(
         request,
@@ -49,9 +48,12 @@ async def alerts_page(request: Request):
 
 @app.get("/stats.html")
 async def stats_page(request: Request):
-    records = create_example_records()
+    records = read_flow_records()
     return templates.TemplateResponse(
         request,
         "stats.html",
-        {"records": records},
+        {
+            "records": records,
+            "summary": calculate_flow_summary(records),
+        },
     )

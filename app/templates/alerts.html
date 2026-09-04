@@ -14,11 +14,16 @@
   <body class="stats-page">
     <div id="root">
       <main>
-        <h1>Alerts</h1>
+        <header class="page-header">
+          <h1>Alerts</h1>
+          <a href="/dashboard.html">Back to dashboard</a>
+        </header>
 
+        {% if records %}
         <table>
           <thead>
             <tr>
+              <th>Time</th>
               <th>Router</th>
               <th>Source IP</th>
               <th>Destination IP</th>
@@ -31,19 +36,21 @@
           <tbody>
             {% for record in records %}
             <tr>
-              <td>{{ record["router-id"] }}</td>
-              <td>{{ record["src-address"] }}</td>
-              <td>{{ record["dst-address"] }}</td>
-              <td>{{ record["protocol"] }}</td>
-              <td>{{ record["bytes"] }}</td>
-              <td>{{ record["packets"] }}</td>
+              <td>{{ record.time or "-" }}</td>
+              <td>{{ record.router_ip or "-" }}</td>
+              <td>{{ record.src_ip or "-" }}</td>
+              <td>{{ record.dst_ip or "-" }}</td>
+              <td>{{ record.protocol or "-" }}</td>
+              <td>{{ record.bytes }}</td>
+              <td>{{ record.packets }}</td>
               <td>High traffic</td>
             </tr>
             {% endfor %}
           </tbody>
         </table>
-
-        <a href="/dashboard.html">Back to dashboard</a>
+        {% else %}
+        <p class="empty-state">No high traffic alerts yet.</p>
+        {% endif %}
       </main>
     </div>
   </body>

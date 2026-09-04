@@ -14,42 +14,71 @@
   <body class="stats-page">
     <div id="root">
       <main>
-        <h1>Stats</h1>
+        <header class="page-header">
+          <h1>Stats</h1>
+          <a href="/dashboard.html">Back to dashboard</a>
+        </header>
 
-        <table>
-          <thead>
-            <tr>
-              <th>Router</th>
-              <th>Source IP</th>
-              <th>Source Port</th>
-              <th>Destination IP</th>
-              <th>Destination Port</th>
-              <th>Protocol</th>
-              <th>Bytes</th>
-              <th>Packets</th>
-              <th>In Interface</th>
-              <th>Out Interface</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for record in records %}
-            <tr>
-              <td>{{ record["router-id"] }}</td>
-              <td>{{ record["src-address"] }}</td>
-              <td>{{ record["src-port"] }}</td>
-              <td>{{ record["dst-address"] }}</td>
-              <td>{{ record["dst-port"] }}</td>
-              <td>{{ record["protocol"] }}</td>
-              <td>{{ record["bytes"] }}</td>
-              <td>{{ record["packets"] }}</td>
-              <td>{{ record["in-interface"] }}</td>
-              <td>{{ record["out-interface"] }}</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+        <section class="stats-summary" aria-label="Traffic summary">
+          <article>
+            <span>Flows</span>
+            <strong>{{ summary.flow_count }}</strong>
+          </article>
+          <article>
+            <span>Total Bytes</span>
+            <strong>{{ summary.total_bytes }}</strong>
+          </article>
+          <article>
+            <span>Packets</span>
+            <strong>{{ summary.total_packets }}</strong>
+          </article>
+          <article>
+            <span>Top Destination</span>
+            <strong>{{ summary.top_destination }}</strong>
+          </article>
+        </section>
 
-        <a href="/dashboard.html">Back to dashboard</a>
+        {% if records %}
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Router</th>
+                <th>Source IP</th>
+                <th>Source Port</th>
+                <th>Destination IP</th>
+                <th>Destination Port</th>
+                <th>Protocol</th>
+                <th>Bytes</th>
+                <th>Packets</th>
+                <th>In</th>
+                <th>Out</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for record in records|reverse %}
+              <tr>
+                <td>{{ record.time or "-" }}</td>
+                <td>{{ record.router_ip or "-" }}</td>
+                <td>{{ record.src_ip or "-" }}</td>
+                <td>{{ record.src_port or "-" }}</td>
+                <td>{{ record.dst_ip or "-" }}</td>
+                <td>{{ record.dst_port or "-" }}</td>
+                <td>{{ record.protocol or "-" }}</td>
+                <td>{{ record.bytes }}</td>
+                <td>{{ record.packets }}</td>
+                <td>{{ record.input_interface or "-" }}</td>
+                <td>{{ record.output_interface or "-" }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        {% else %}
+        <p class="empty-state">No parsed NetFlow records yet.</p>
+        {% endif %}
+
       </main>
     </div>
   </body>
